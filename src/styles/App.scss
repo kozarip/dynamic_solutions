@@ -32,12 +32,37 @@ code {
 
 header {
   display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 5vh;
-  padding: 5px;
+  padding: 5px 10px;
   background-color: #1D262D;
   color: #fff;
   align-items: center;
+  img {
+    max-height: 100%;
+  }
+  a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+    padding-bottom: 2px;
+    /* &:hover {
+      font-size: 1.2em;
+      transition: 2s;
+    } */
+    &.active {
+      border-bottom: 1px solid #fff;
+    }
+  }
+}
+
+.contentContainer{
+  max-width: 1280px;
+  height: calc(100vh - 50px);
+  margin: 0 auto;
+  padding: 20px 10px;
+  background-color: #F0F2F5;
 }
 
 footer {

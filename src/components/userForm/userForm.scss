@@ -1,0 +1,17 @@
+#userForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  input, textarea {
+    max-width: 620px;
+    width: 100%;
+    margin-bottom: 20px;
+    outline: none;
+    border: 0;
+    font-size: 18px;
+  }
+  input {
+    height: 50px;
+  }
+}
