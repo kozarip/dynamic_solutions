@@ -1,11 +1,15 @@
 import React, {useContext, useEffect} from 'react';
+import { NavLink } from 'react-router-dom';
 import { AppContext } from '../../App';
 import './profile.scss'
 
 const Profile = () => {
   const { user } = useContext(AppContext);
   if (!user) {
-    return <p>Please fill your profile!</p>
+    return <div className='fill'>
+      <p>Please fill your profile!</p>
+      <NavLink to="edit">Go to the settings</NavLink>
+    </div>
   }
   return (
     <div id="profileContainer">
