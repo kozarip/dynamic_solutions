@@ -1,4 +1,6 @@
 
+# Peter Kozari - Dynamic Solutions Test Task
+
 #### UI
 
 I'm not using any UI framework, because it's not necessary. I think this project is very simple, every element can design with some lines of css.
