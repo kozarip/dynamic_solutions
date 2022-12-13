@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
 import Profile from './components/profile/profile';
 import UserForm from './components/userForm/userForm';
@@ -15,11 +15,14 @@ const initUser: User = {
   about: "",
   avatar: "",
 }
-export const AppContext = React.createContext<User>(initUser);
+export const AppContext = React.createContext<
+  { user: User | null, setUser: (u: User | null) => void }
+>({ user: null, setUser: () => { } });
 
 function App() {
   const activeClassName = "active";
   const logo = require("./assets/images/logo.png");
+  const [user, setUser] = useState<User | null>(null)
 
   return (
     <div className="App">
@@ -31,7 +34,7 @@ function App() {
             <NavLink to="edit" className={({ isActive }) => isActive ? activeClassName : ""}>Edit</NavLink>
           </nav>
         </header>
-        <AppContext.Provider value={initUser}>
+        <AppContext.Provider value={{user: initUser, setUser}}>
           <main className='contentContainer'>
             <Routes>
               <Route path="/" element={<Profile/>} />

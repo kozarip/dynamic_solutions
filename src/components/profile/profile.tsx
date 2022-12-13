@@ -3,7 +3,10 @@ import { AppContext } from '../../App';
 import './profile.scss'
 
 const Profile = () => {
-  const user = useContext(AppContext);
+  const { user } = useContext(AppContext);
+  if (!user) {
+    return <p>Please edit your profile!</p>
+  }
   return (
     <div id="profileContainer">
       <p>Name: {user.firstName} {user.lastName}</p>
