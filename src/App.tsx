@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
 import Profile from './components/profile/profile';
 import UserForm from './components/userForm/userForm';
 import Error404 from './components/errors/404';
 import { User } from './utils/types';
 import './styles/App.scss';
+import { getUserFromApi } from './utils/api';
 
-const initUser: User = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  birthDay: "",
-  about: "",
-  avatar: "",
-}
 export const AppContext = React.createContext<
   { user: User | null, setUser: (u: User | null) => void }
 >({ user: null, setUser: () => { } });
@@ -23,6 +15,10 @@ function App() {
   const activeClassName = "active";
   const logo = require("./assets/images/logo.png");
   const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    setUser(getUserFromApi());
+  }, [])
 
   return (
     <div className="App">
@@ -34,7 +30,7 @@ function App() {
             <NavLink to="edit" className={({ isActive }) => isActive ? activeClassName : ""}>Edit</NavLink>
           </nav>
         </header>
-        <AppContext.Provider value={{user: initUser, setUser}}>
+        <AppContext.Provider value={{user, setUser}}>
           <main className='contentContainer'>
             <Routes>
               <Route path="/" element={<Profile/>} />
