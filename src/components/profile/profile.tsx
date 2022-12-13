@@ -14,7 +14,13 @@ const Profile = () => {
       <p>Phone number: {user.phone}</p>
       <p>BirthDay: {user.birthday}</p>
       <p>About: {user.about}</p>
-      <img alt="avatar" src={user.avatar} />
+      {user.avatar.length > 0 && (
+        <img
+          alt="avatar"
+          className='avatar'
+          src={user.avatar[0].data_url}
+        />
+      )}
     </div>
   );
 }

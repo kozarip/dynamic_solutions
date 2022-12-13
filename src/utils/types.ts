@@ -1,3 +1,6 @@
+
+import { ImageListType } from 'react-images-uploading';
+
 export type User = {
   firstName: string
   lastName: string
@@ -5,5 +8,5 @@ export type User = {
   phone: string
   birthday: string
   about: string
-  avatar: string
+  avatar: ImageListType
 }

@@ -95,6 +95,45 @@ const UserForm = () => {
         required
         onChange={(e) => setAbout(e.target.value)}
       />
+      <ImageUploading
+        value={avatar}
+        onChange={(imageList: ImageListType) => setAvatar(imageList as never[])}
+        maxNumber={1}
+        dataURLKey="data_url"
+      >
+        {({
+          imageList,
+          onImageUpload,
+          onImageUpdate,
+        }) => (
+          // write your building UI
+          <div className="avatarBox">
+            {imageList.length === 0 && (
+              <button
+                onClick={onImageUpload}
+              >
+                Upload your Avatar
+              </button>
+            )}
+            {imageList.map((image, index) => (
+              <div key={index} className="imageBox">
+                <img className='avatar'
+                  src={image['data_url']}
+                  alt="avatar"
+                />
+                <div className="avatarImage">
+                  <button
+                    onClick={(e) => {
+                    e.preventDefault();
+                    onImageUpdate(index)
+                    }}>Update
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </ImageUploading>
       <input
         className='submit'
         type="submit"
