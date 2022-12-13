@@ -59,53 +59,76 @@ const UserForm = () => {
   return (
     <form id='userForm' onSubmit={handleSubmit}>
       <h3>Your profile</h3>
-      <input
-        name="firstName"
-        type="text"
-        placeholder='First Name'
-        value={firstName}
-        required
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-      <input
-        name="lastName"
-        type="text"
-        placeholder='Last Name'
-        value={lastName}
-        required
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <input
-        name="email"
-        type="email"
-        placeholder='E-mail'
-        value={email}
-        required
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        name="phone"
-        type="tel"
-        placeholder='Phone number'
-        value={phone}
-        required
-        onChange={(e) => setPhone(e.target.value)}
-      />
-      <input
-        name="birthday"
-        type="date"
-        placeholder='Birthday'
-        value={birthday}
-        required
-        onChange={(e) => setBirthday(e.target.value)}
-      />
-      <textarea
-        rows={5}
-        placeholder='About'
-        value={about}
-        required
-        onChange={(e) => setAbout(e.target.value)}
-      />
+      <div className='inputRow'>
+        <label htmlFor="firstName">First Name:</label>
+        <input
+          id="firstName"
+          name="firstName"
+          type="text"
+          placeholder='John'
+          value={firstName}
+          required
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </div>
+      <div className='inputRow'>
+        <label htmlFor="lastName">Last Name:</label>
+        <input
+          id="lastName"
+          name="lastName"
+          type="text"
+          placeholder='Doe'
+          value={lastName}
+          required
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
+      <div className='inputRow'>
+        <label htmlFor="email">E-mail:</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder='test@example.com'
+          value={email}
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div><div className='inputRow'>
+        <label htmlFor="phone">Telephone number:</label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          placeholder='+36301234567'
+          value={phone}
+          required
+          onChange={(e) => setPhone(e.target.value)}
+        />
+      </div>
+      <div className='inputRow'>
+        <label htmlFor="birthday">Birthday:</label>
+        <input
+          id="birthday"
+          name="birthday"
+          type="date"
+          placeholder='Birthday'
+          value={birthday}
+          required
+          onChange={(e) => setBirthday(e.target.value)}
+        />
+      </div>
+      <div className='inputRow'>
+        <label htmlFor="about">About:</label>
+        <textarea
+          id="about"
+          rows={5}
+          placeholder='Write something about yourself!'
+          value={about}
+          required
+          onChange={(e) => setAbout(e.target.value)}
+        />
+      </div>
       <ImageUploading
         value={avatar}
         onChange={(imageList: ImageListType) => setAvatar(imageList as never[])}

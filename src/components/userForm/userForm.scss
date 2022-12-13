@@ -1,24 +1,41 @@
+$fontSize: 18px;
+
 #userForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  input, textarea, .avatarBox {
+  .avatarBox, .inputRow  {
     max-width: 620px;
     width: 100%;
     margin-bottom: 20px;
+  }
+  .inputRow {
+    display: flex;
+    align-items:  center;
+    justify-content: center;
+    label {
+      font-size: $fontSize;
+      margin-right: 20px;
+      max-width: 120px;
+      width: 100%;
+    }
+  }
+  input, textarea {
+    width: 100%;
     outline: none;
     border: 0;
-    font-size: 18px;
+    font-size: $fontSize;
   }
   input {
     height: 50px;
+    padding: 0 5px;
   }
   .submit {
     max-width: 250px;
     height: 50px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: $fontSize;
     color: #fff;
     background-color: #1D262D;
   }
@@ -30,10 +47,11 @@
     button {
       max-width: 200px;
       padding: 10px;
-      font-size: 18px;
+      font-size: $fontSize;
     }
     pre {
       font-size: 14px;
+      white-space: normal;
     }
   }
 }
