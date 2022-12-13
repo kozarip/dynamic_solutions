@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ImageUploading, { ImageListType }  from 'react-images-uploading';
-import Modal from 'react-bootstrap/Modal';
 import { AppContext } from '../../App';
 import './userForm.scss'
 import { storeUserInBackend } from '../../utils/api';
