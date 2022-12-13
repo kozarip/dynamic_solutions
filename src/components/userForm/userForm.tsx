@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ImageUploading, { ImageListType }  from 'react-images-uploading';
+import Modal from 'react-bootstrap/Modal';
 import { AppContext } from '../../App';
 import './userForm.scss'
 import { storeUserInBackend } from '../../utils/api';
@@ -16,6 +17,9 @@ const UserForm = () => {
   const [birthday, setBirthday] = useState(new Date().toString());
   const [about, setAbout] = useState("");
   const [avatar, setAvatar] = useState<ImageListType>([]);
+  const [imageErrorMessage, setImageErrorMessage] = useState("")
+
+  const acceptedImageExtensions = ['jpg', 'png']
 
   useEffect(() => {
     if (user) {
@@ -43,6 +47,14 @@ const UserForm = () => {
     storeUserInBackend(modifiedUser)
     setUser(modifiedUser)
     navigate("/");
+  }
+
+  const handleImageError = (error: any) => {
+    if (error.maxFileSize) {
+      alert("Your uploaded file must be lower than 3MB!")
+    } else if (error.acceptType) {
+      alert("Unaccepted file type!")
+    }
   }
 
   return (
@@ -100,6 +112,9 @@ const UserForm = () => {
         onChange={(imageList: ImageListType) => setAvatar(imageList as never[])}
         maxNumber={1}
         dataURLKey="data_url"
+        acceptType={acceptedImageExtensions}
+        maxFileSize={3145728}
+        onError={(e) => handleImageError(e)}
       >
         {({
           imageList,
@@ -110,7 +125,10 @@ const UserForm = () => {
           <div className="avatarBox">
             {imageList.length === 0 && (
               <button
-                onClick={onImageUpload}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  onImageUpload()
+                }}
               >
                 Upload your Avatar
               </button>
@@ -131,6 +149,7 @@ const UserForm = () => {
                 </div>
               </div>
             ))}
+          <pre>Max file size: 3MB, Accepted extensions: jpg, png</pre>
           </div>
         )}
       </ImageUploading>
